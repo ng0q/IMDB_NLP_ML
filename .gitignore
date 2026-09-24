@@ -1,22 +1,50 @@
-# Virtual environment
-.venv/
-venv/
-env/
-
 # Python
 __pycache__/
 *.py[cod]
+*$py.class
+*.so
+.Python
+.venv/
+venv/
+env/
 *.egg-info/
+.eggs/
+dist/
+build/
+
+# Jupyter
 .ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# Data
+data/raw/
+data/processed/
+*.csv
+*.parquet
+*.h5
+*.pkl
+*.joblib
+
+# Models
+model/*.pkl
+model/*.joblib
 
 # MLflow
 mlruns/
 mlflow.db
 *.db
 
-# Local / OS
+# Environment and secrets
+.env
+.env.*
+*.key
+kaggle.json
+
+# OS / IDE
 .DS_Store
+.idea/
 .vscode/
+*.swp
 
 # Local sample artifacts
 sample_review.txt

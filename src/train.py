@@ -26,13 +26,16 @@ from src.preprocess import preprocess_dataframe, train_test_split_data
 TFIDF_MIN_DF = 5
 TFIDF_MAX_DF = 0.95
 TFIDF_SUBLINEAR_TF = True
-TFIDF_NGRAM_RANGE = (1, 1)
+TFIDF_NGRAM_RANGE = (1, 2)
 TFIDF_MAX_FEATURES = 40000
 
 LOGREG_C = 0.5
 LOGREG_MAX_ITER = 1000
 LOGREG_CLASS_WEIGHT = "balanced"
 LOGREG_RANDOM_STATE = 42
+
+DATA_DIR = Path("data")
+DATA_CSV = DATA_DIR / "IMDB Dataset.csv"
 
 DEFAULT_MODEL_DIR = Path("model")
 DEFAULT_MODEL_PATH = DEFAULT_MODEL_DIR / "model.pkl"
@@ -127,3 +130,22 @@ def load_model(model_path: str | Path = DEFAULT_MODEL_PATH) -> Any:
 def load_vectorizer(vectorizer_path: str | Path = DEFAULT_VECTORIZER_PATH) -> Any:
     """Load a saved TF-IDF vectorizer from disk."""
     return joblib.load(vectorizer_path)
+
+
+def main() -> None:
+    """Train and save artifacts. Uses local CSV in data/ if present."""
+    path = str(DATA_DIR) if DATA_CSV.exists() else None
+    _, metrics = train(path=path)
+
+    print("=" * 60)
+    print("Logistic Regression + TF-IDF")
+    print("=" * 60)
+    for name, value in metrics.items():
+        print(f"{name}: {value:.6f}")
+    print()
+    print(f"Saved model:      {DEFAULT_MODEL_PATH}")
+    print(f"Saved vectorizer: {DEFAULT_VECTORIZER_PATH}")
+
+
+if __name__ == "__main__":
+    main()
