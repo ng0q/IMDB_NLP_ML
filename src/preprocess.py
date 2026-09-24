@@ -22,7 +22,7 @@ def load_raw_data(path: str | None = None) -> pd.DataFrame:
 def encode_sentiment(df: pd.DataFrame) -> pd.DataFrame:
     """Encode sentiment: positive -> 1, otherwise -> 0."""
     df = df.copy()
-    if df["sentiment"].dtype == object:
+    if not pd.api.types.is_numeric_dtype(df["sentiment"]):
         df["sentiment"] = np.where(df["sentiment"] == "positive", 1, 0)
     return df
 
