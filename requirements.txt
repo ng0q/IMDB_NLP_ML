@@ -1,0 +1,13 @@
+# Python 3.12.14
+pandas==3.0.6
+numpy==2.5.3
+scikit-learn==1.9.1
+joblib==1.6.0
+optuna==5.0.0
+mlflow==3.16.1
+kagglehub==1.0.2
+matplotlib==3.11.2
+fastapi==0.141.1
+uvicorn[standard]==0.53.0
+pydantic==2.13.5
+httpx==0.28.1
