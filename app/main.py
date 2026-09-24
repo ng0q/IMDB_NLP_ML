@@ -43,8 +43,8 @@ def predict(request: PredictionRequest):
     confidence = float(y_proba[int(y_pred)])
 
     return PredictionResponse(
-        predicted_sentiement='Positive' if y_pred==1 else 'Negative',
-        predicted_proba_sentiement=f"{confidence:.2f}",
+        predicted_sentiment='Positive' if y_pred==1 else 'Negative',
+        predicted_proba_sentiment=f"{confidence:.2f}",
     )
 
 

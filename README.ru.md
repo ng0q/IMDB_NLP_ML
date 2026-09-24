@@ -17,9 +17,11 @@
 
 Цель — воспроизводимый пайплайн: скачивание → очистка текста → обучение Logistic Regression + TF-IDF → артефакты → FastAPI для инференса.
 
+Исходные эксперименты лежат в [`notebook/nlpai.ipynb`](notebook/nlpai.ipynb).
+
 ## Результаты
 
-Hold-out: `test_size=0.8`, `random_state=42`, `stratify` (в обучении 20% выборки, в тесте 80%). Метрика сравнения — **f1_macro** лучших trial из MLflow (Optuna, 30 прогонов на режим).
+Hold-out: `test_size=0.8`, `random_state=42`, `stratify` (в обучении 20% выборки, в тесте 80%). Такой маленький train взят специально: это проба на маленькой выборке, а не обычное деление 75/25. Метрика сравнения — **f1_macro** лучших trial из MLflow (Optuna, 30 прогонов на режим).
 
 Три режима:
 
@@ -99,11 +101,13 @@ IMDB_NLP_ML/
 │   └── test.py           pytest
 ├── data/                 сырой датасет (не в git)
 ├── model/                model.pkl, vectorizer.pkl (не в git)
-├── notebook/             исходные эксперименты
+├── notebook/
+│   └── nlpai.ipynb       исходные эксперименты
 ├── report/
 ├── Dockerfile
 ├── .dockerignore
 ├── requirements.txt
+├── LICENSE
 ├── README.md
 └── README.ru.md
 ```
@@ -173,8 +177,8 @@ curl -X POST http://127.0.0.1:8000/predict \
 
 ```json
 {
-  "predicted_sentiement": "Positive",
-  "predicted_proba_sentiement": "0.61"
+  "predicted_sentiment": "Positive",
+  "predicted_proba_sentiment": "0.61"
 }
 ```
 
@@ -187,6 +191,10 @@ curl -X POST http://127.0.0.1:8000/predict \
 - Чуть больше работы с n-граммами: отдельно проверить, есть ли выгода у триграмм на других моделях и на скошенной выборке
 - docker-compose, чтобы не помнить флаги `docker run`
 - Версионирование артефактов модели
+
+## Лицензия
+
+[MIT](LICENSE) © 2026 Илья Рябец.
 
 ## Автор
 

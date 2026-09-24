@@ -17,9 +17,11 @@ The dataset is [IMDB Dataset of 50K Movie Reviews](https://www.kaggle.com/datase
 
 The goal is a reproducible pipeline: download → text cleaning → Logistic Regression + TF-IDF → artifacts → FastAPI inference.
 
+The original experiments are in [`notebook/nlpai.ipynb`](notebook/nlpai.ipynb).
+
 ## Results
 
-Hold-out: `test_size=0.8`, `random_state=42`, `stratify` (20% of the data for training, 80% for test). The comparison metric is **f1_macro** of the best MLflow trials (Optuna, 30 runs per setting).
+Hold-out: `test_size=0.8`, `random_state=42`, `stratify` (20% of the data for training, 80% for test). The train share is this small on purpose: it was a trial on a small sample, not the usual 75/25 split. The comparison metric is **f1_macro** of the best MLflow trials (Optuna, 30 runs per setting).
 
 Three settings:
 
@@ -99,11 +101,13 @@ IMDB_NLP_ML/
 │   └── test.py           pytest
 ├── data/                 raw dataset (not in git)
 ├── model/                model.pkl, vectorizer.pkl (not in git)
-├── notebook/             original experiments
+├── notebook/
+│   └── nlpai.ipynb       original experiments
 ├── report/
 ├── Dockerfile
 ├── .dockerignore
 ├── requirements.txt
+├── LICENSE
 ├── README.md
 └── README.ru.md
 ```
@@ -173,8 +177,8 @@ Example response:
 
 ```json
 {
-  "predicted_sentiement": "Positive",
-  "predicted_proba_sentiement": "0.61"
+  "predicted_sentiment": "Positive",
+  "predicted_proba_sentiment": "0.61"
 }
 ```
 
@@ -187,6 +191,10 @@ Example response:
 - More work on n-grams: check whether trigrams help on the other models and on a skewed sample
 - docker-compose, so the `docker run` flags do not have to be remembered
 - Model artifact versioning
+
+## License
+
+[MIT](LICENSE) © 2026 Ilya Ryabets.
 
 ## Author
 

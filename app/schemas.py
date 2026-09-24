@@ -9,12 +9,12 @@ class PredictionRequest(BaseModel):
     
 
 class PredictionResponse(BaseModel):
-    predicted_sentiement: str = Field(
+    predicted_sentiment: str = Field(
         ...,
         description='Positive or Negative',
         examples=['Positive']
     )
-    predicted_proba_sentiement: str = Field(
+    predicted_proba_sentiment: str = Field(
         ...,
         description='Model`s Confidence',
         examples=['0.93']
