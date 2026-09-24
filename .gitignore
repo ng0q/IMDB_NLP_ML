@@ -1,0 +1,22 @@
+# Virtual environment
+.venv/
+venv/
+env/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.ipynb_checkpoints/
+
+# MLflow
+mlruns/
+mlflow.db
+*.db
+
+# Local / OS
+.DS_Store
+.vscode/
+
+# Local sample artifacts
+sample_review.txt
